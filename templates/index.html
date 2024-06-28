@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Task management{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card p-4">
+                <h1 class="text-center">Task management</h1>
+                <p>Welcome, {{ current_user.username }}!</p>
+                <a href="{{ url_for('logout') }}" class="btn btn-secondary mb-3">Logout</a>
+                <a href="{{ url_for('add_task') }}" class="btn btn-primary mb-3">Add New Task</a>
+                <ul class="list-group">
+                    {% for task in tasks %}
+                        <li class="list-group-item">
+                            <strong>{{ task.title }}</strong>: {{ task.description }}
+                            <span class="float-right">
+                                <a href="{{ url_for('edit_task', task_id=task._id) }}" class="btn btn-sm btn-info">Edit</a>
+                                <a href="{{ url_for('delete_task', task_id=task._id) }}" class="btn btn-sm btn-danger">Delete</a>
+                            </span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

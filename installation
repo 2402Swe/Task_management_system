@@ -1,0 +1,4 @@
+cd MyEnv
+cd Scripts
+activate
+python app.py
